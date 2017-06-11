@@ -1,7 +1,4 @@
-<?php header ('Content-type: text/html; charset=utf-8');
-    error_reporting(E_ERROR | E_WARNING | E_NOTICE);
-    ini_set('display_errors', 1);
-$id_post = filter_input(INPUT_POST , 'id');
+<?php
 $news='Четыре новосибирские компании вошли в сотню лучших работодателей
 Выставка университетов США: открой новые горизонты
 Оценку «неудовлетворительно» по качеству получает каждая 5-я квартира в новостройке
@@ -11,18 +8,10 @@ $news='Четыре новосибирские компании вошли в с
 День святого Патрика: угощения, пивной теннис и уличные гуляния с огнем
 «Красный факел» пустит публику на ночные экскурсии за кулисы и по закоулкам столетнего здания
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
-$news = explode("\n", $news);
 
-include 'my_functions.php';
-
-if(isset($news[$id_post])){
-    one_news($news[$id_post]);
+function array_news ($news) {
+    /* {Записывает в массив ту часть строки, которая находится до знака \n переноса строки} */
+    $news = explode("\n", $news);
+    return $news;
 }
-elseif(is_numeric($id_post)){
-    full_news($news);
-}
-else{
-    include 'not_Found.html';     
-}
-
-
+$array_news = array_news($news);

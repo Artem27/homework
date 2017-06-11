@@ -1,16 +1,5 @@
-<?php header ('Content-type: text/html; charset=utf-8'); 
-    if(isset($_GET['id'])){
-}else{
-    header("HTTP/1.0 404 Not Found");
-    header("HTTP/1.1 404 Not Found");
-    header("Status: 404 Not Found");
-    include 'not_Found.html';
-    exit();
-}
-?>
 <?php
-    error_reporting(E_ERROR | E_WARNING | E_NOTICE);
-    ini_set('display_errors', 1);
+
 $news='Четыре новосибирские компании вошли в сотню лучших работодателей
 Выставка университетов США: открой новые горизонты
 Оценку «неудовлетворительно» по качеству получает каждая 5-я квартира в новостройке
@@ -20,10 +9,12 @@ $news='Четыре новосибирские компании вошли в с
 День святого Патрика: угощения, пивной теннис и уличные гуляния с огнем
 «Красный факел» пустит публику на ночные экскурсии за кулисы и по закоулкам столетнего здания
 Звезды телешоу «Голос» Наргиз Закирова и Гела Гуралиа споют в «Маяковском»';
-$news = explode("\n", $news);
-include 'my_functions.php';
-if(isset($news[$_GET['id']])){
-    one_news($news[$_GET['id']]);
-}else{
-    full_news($news);
+
+function array_news ($news) {
+    /* {Записывает в массив ту часть строки, которая находится до знака \n переноса строки} */
+    $news = explode("\n", $news);
+    return $news;
 }
+
+$array_news = array_news($news);
+

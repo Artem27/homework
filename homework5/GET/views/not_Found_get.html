@@ -1,28 +1,33 @@
+<!-- {Без CSS} -->
 <!DOCTYPE html>
-
 <html>
     <head>
-        <title>404 Ошибочка</title>
+        <title>404 Error</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+            /* {Стили} */
+
             .not_found{
                 margin: 0 auto; 
                 height: auto;
                 text-align: center;
             }
+
             .not_found_2{
                 margin: 0 auto;
                 border: 1px solid;
                 border-radius: 7px;
                 max-width: 600px;
             }
+
             .error{ 
                 font-size: 18px;
                 display: block;
                 padding: 10px;
                 
             }
+
             .images{
                 margin: 30px auto; 
             }
@@ -32,26 +37,27 @@
         <div class="not_found">
             <div class="not_found_2">
                 <span class="error">
-                    Возникла ошибка!
+                    Возникла ошибка! Данная страница не найдена или была перемещена :(
                 </span>
                 <span class="error">
-                    Попробуйте воспользоваться поиском! 
+                    Попробуйте воспользоваться поиском!
                 </span>
             </div>
             <div class="images">
-                <img src="image/404.jpg">
-            </div>
-            <div>
-                <form action="index.php" method="POST">
-                <p>Введите номер новости</p>
-               <p class="input2">
-                   <input class="input" type="text" name="id" value="">
-               </p>
-               <p class="input2">
-                   <input type="submit" value="Поиск новости">
-               </p>
-            </form>
+                <img src="image/404_method_get.jpg">
             </div>
         </div>
+
+        <!-- {Строка поиска} -->
+
+        <div class="title">
+            <h3 class="title__search">
+                Попробуйте воспользоваться поиском
+            </h3>
+        </div>
+        <form action="./index_get.php" method="GET" class="search">
+            <input class="search__input" value="" type="text" name="id" title="Поиск новостей" placeholder="Введите номер">
+            <input type="submit" class="btn" value="Поиск">
+        </form>
     </body>
 </html>
