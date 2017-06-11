@@ -14,7 +14,7 @@ $id_post = filter_input(INPUT_POST , 'id');
 if ( isset($array_news[$id_post]) && is_numeric($id_post) ) {
       one_news($array_news[$id_post]);
 
-/* {Если номера номера новости не существует и это не число
+/* {Если номера новости не существует и это не число
     выводим список всех новостей} */
 } elseif ( empty($id_post) ) {
       /* {Подключаем форму} */
@@ -23,12 +23,14 @@ if ( isset($array_news[$id_post]) && is_numeric($id_post) ) {
 
 } elseif ( !empty($id_post) ) {
 
+      /* {Если номер не является номером или его не существует
+          выводим 404 ошибку} */
       if ( !isset($array_news[$id_post]) or !is_numeric($id_post) ) {
             include ('views/not_Found_post.html');
       }
 
 } else {
-/* {В противном случае выводи 404 ошибку} */
+/* {Если номера новости нет, то выводим все новости} */
       full_news($array_news);
 }
 
