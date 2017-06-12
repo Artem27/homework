@@ -1,0 +1,7 @@
+.block {
+  background: #e840a7;
+  margin: 0 10px 20px 0;
+
+  @include dimensions(200px, 220px);
+  @include inline_block(middle);
+}

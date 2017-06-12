@@ -1,0 +1,255 @@
+.ads {
+  border:        3px solid $blue;
+  border-right:  3px solid transparent;
+  border-left:   3px solid transparent;
+  width:         65%;
+  float:         right;
+  background:    lighten($blue,35%);
+  position:      relative;
+  margin-bottom: 30px;
+
+  @extend %clear_fix;
+  @include border-radius(0px 40px 40px 0px);
+  @include fira_sans();
+  @include transition-duration(1s);
+
+  &:hover {
+    border-right: 3px solid $blue;
+    border-left:  3px solid transparent;
+    background:   lighten($blue,90%);
+
+    @include transition-duration(1s);
+    @include box-shadow(1px 3px 10px $gray);
+
+    .input {
+      color: $black;
+
+      @include transition-duration(.5s);
+    }
+
+    .select {
+      color: $black;
+
+      @include transition-duration(.5s);
+    }
+
+    .button__submit {
+      background:    #bebebe;
+      border-top:    3px solid $blue;
+      border-bottom: 3px solid $blue;
+      color:         $lightBlack;
+
+      @include transition-duration(.5s);
+    }
+
+    .inputs__input_error {
+      .input {
+        color: red;
+
+        &:focus {
+          color: $black;
+        }
+      }
+    }
+  }
+}
+
+.form-wrapper {
+  width:  90%;
+  margin: 0 auto;
+}
+
+.inputs {
+  @extend %clear_fix;
+}
+
+.inputs__block {
+  margin-bottom: 20px;
+
+  @extend %clear_fix;
+}
+
+.inputs__title {
+  font-size: 125%;
+  float:     left;
+  width:     40%;
+  color:     $lightBlack;
+  position:  relative;
+}
+
+.inputs__input {
+  width: 50%;
+  float: left;
+}
+
+.input {
+  font-size:  112.5%;
+  text-align: center;
+  color:      $lightBlack;
+
+  @include transition-duration(1s);
+  @include dimensions(90%, 35px);
+  @include box-shadow(none);
+
+  &:focus {
+    outline:  none;
+  }
+}
+
+.checkbox {
+  font-size:  125%;
+  text-align: left;
+  color:      $lightBlack;
+
+  .checkbox__on {
+    @include dimensions(15px, 15px);
+  }
+}
+
+.selects {
+  @extend .inputs;
+}
+
+.select {
+  font-size:  112.5%;
+  text-align: center;
+  color:      $lightBlack;
+  width:      45%;
+
+  @include transition-duration(1s);
+  @include border-radius(3px);
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus {
+    .select-letter{
+      color: $pink;
+    }
+  }
+}
+
+.description__block {
+  @extend .inputs__block;
+}
+
+.description__title {
+  font-size:     125%;
+  color:         $lightBlack;
+  text-align:    center;
+  margin-bottom: 10px;
+}
+
+.description {
+  width:  100%;
+  resize: none;
+  height: 150px;
+
+  &:focus {
+    outline: none;
+  }
+
+  @include border-radius(3px);
+}
+
+// = .....  Кнопка  .........................................
+
+.button {
+  @extend .inputs__block;
+}
+
+.button__submit {
+  width:         13.88888889em;
+  padding:       .1em .2em;
+  font-size:     112.5%;
+  height:        2.5em;
+  border:        3px solid $blue;
+  border-top:    3px solid transparent;
+  border-bottom: 3px solid transparent;
+  margin:        0 0 20px 56.5%;
+  color:         $gray;
+
+  @include transition-duration(.4s);
+  @include border-radius(7px);
+
+  &:hover {
+    border:     3px solid  #bebebe;
+
+    @include transition-duration(.4s);
+    @include box-shadow(0 1px 3px $gray);
+
+    .form__submit-text {
+      color:  $black;
+
+      @include transition-duration(.5s);
+    }
+
+    &:active {
+      color:  $purple;
+
+      @include transform( scale(.99) );
+      @include box-shadow(0 15px 30px 1px $gray inset);
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button__img {
+  margin-right: 0.277777em;
+
+  @include inline_block(middle);
+  @include dimensions(1.3888888889em, 1.3888888889em);
+}
+
+.button__icon_pic {
+  @include dimensions(100%, 100%);
+}
+
+.form__submit-text {
+  @include transition-duration(.5s);
+  @include inline_block(middle);
+}
+
+// = .....  Error  .........................................
+
+@keyframes title {
+  25% {
+    color: red;
+  }
+
+  100% {
+    color: $black;
+  }
+}
+
+// модификатор error
+
+.inputs__input_error {
+  .inputs__title {
+
+
+    @include AnimationFull(title, .3s, linear, 5);
+  }
+
+  .input {
+    border:    1px solid red;
+    font-size: 16px;
+
+    &:focus {
+      color: $black;
+    }
+  }
+
+  .select {
+    border:    1px solid red;
+    font-size: 16px;
+
+    &:focus {
+      color: $black;
+    }
+  }
+}
