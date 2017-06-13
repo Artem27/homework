@@ -1,12 +1,17 @@
 <?php
-// Всё относительно index.php
+/* {Всё относительно index.php} */
 
+/* {Запускаем сессию} */
 session_start();
 
+/* {Подключаем данные} */
 require_once ('database.php');
+
+/* {Подключаем функцию приветствия и даты} */
 require_once ('models/functions.php');
 
-$helloDisplay = helloDisplay();
+/* {Функция приветствия и вывода даты} */
+$hello_display = hello_display();
 
 $pages = array(
 
@@ -68,6 +73,7 @@ $pages = array(
 
 $page = filter_input(INPUT_GET, 'page');
 
+/* {Контроллер страниц} */
 if ( isset($pages[$page])) {
     $title   = $pages[$page]['title'];
     $view    = $pages[$page]['view'];
@@ -78,13 +84,13 @@ if ( isset($pages[$page])) {
     $cookie  = isset( $pages[$page]['script_cookie'] ) ? $pages[$page]['script_cookie'] : '';
     $file    = isset( $pages[$page]['script_file'])    ? $pages[$page]['script_file']   : '';
 
-    // Запись в сессию
-    //include $models;
+    /* {Запись в сессию
+        include $models;} */
 
-    // Запись в куки
-    //include $cookie;
+    /* {Запись в куки
+       include $cookie;} */
 
-    // Запись в фаил
+    /* {Запись в фаил} */
     include $file;
     include ('views/pages/header.php');
     include ('views/pages/aside.php');

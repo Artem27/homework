@@ -3,10 +3,11 @@
 /* =        Здесь функционал         = */
 
 // =  Время и дата  = \\
-function helloDisplay() {
+function hello_display() {
 
     $date = explode('.', date('d.m.Y.l'));
 
+    /* {Перевод месяца на русский язык} */
     switch ($date[1]) {
 
         case '01' : $m = 'Января';   break;
@@ -23,6 +24,7 @@ function helloDisplay() {
         case '12' : $m = 'Декабря';  break;
     }
 
+    /* {Перевод дня недели на русский язык} */
     switch ($date[3]) {
 
         case 'Monday'    : $l = 'Понедельник'; break;
@@ -36,6 +38,7 @@ function helloDisplay() {
 
     $time = (int) date('H : i');
 
+    /* {Функция приветствия} */
     if ($time > 4 && $time <= 11) {
         $hello = 'Доброе утро!';
 
@@ -52,9 +55,9 @@ function helloDisplay() {
         $hello = 'Доброй ночи!';
     }
 
-    $dateHello = "$hello Сегодня: $date[0] $m $date[2] $l";
+    $date_hello = "$hello Сегодня: $date[0] $m $date[2] $l";
 
-    return $dateHello;
+    return $date_hello;
 }
 
 

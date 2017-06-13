@@ -53,7 +53,7 @@
                 <div class="header__right">
                     <div class="message">
                         <div class="message__date">
-                            <?php echo $helloDisplay ?>
+                            <?php echo $hello_display ?>
                         </div>
                     </div>
                     <div class="social">

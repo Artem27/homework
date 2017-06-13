@@ -1,6 +1,6 @@
 <?php
 
-// Немного редактируем данные
+/* {Убираем пробелы} */
 if ( !empty($_POST) ) {
     $_POST['user_name']   = trim($_POST['user_name']);
     $_POST['ads_name']    = trim($_POST['ads_name']);
@@ -8,11 +8,17 @@ if ( !empty($_POST) ) {
     $_POST['description'] = trim($_POST['description']);
 }
 
-// Функция проверки данных
+                    /*_______________________________________
+                    |                                        |
+                    |                                        |
+                    |      Функция валидации данных          |
+                    |      и проверки заполненные данные     |
+                    |                                        |
+                    |______________________________________ */
 
 function validate_post($post) {
 
-    // Проверка на обязательные заполненные данные
+    /* {Проверка на обязательные заполненные данные} */
     if (!empty($post)) {
 
         if (empty($post['user_name'])) {
@@ -24,7 +30,7 @@ function validate_post($post) {
             $message['error']['error_user_email']        = 'Вы не ввели email';
             $message['error_input']['input_error_email'] = 'inputs__input_error';
 
-            // Проверака на валидность
+            /* {Проверака на валидность} */
         } elseif (filter_var($post['user_email'], FILTER_VALIDATE_EMAIL) === false) {
             $message['error']['error_user_email']        = 'Вы ввели некорректный email';
             $message['error_input']['input_error_email'] = 'inputs__input_error';
@@ -50,7 +56,7 @@ function validate_post($post) {
             $message['error']['error_price']             = 'Вы не указали цену';
             $message['error_input']['input_error_price'] = 'inputs__input_error';
 
-            // Проверака на правильность цены
+            /* {Проверака на правильность цены} */
         } elseif (!is_numeric($post['price'])) {
             $message['error']['error_price']             = 'Вы неправильно указали цену';
             $message['error_input']['input_error_price'] = 'inputs__input_error';
@@ -68,7 +74,13 @@ function validate_post($post) {
 
 $display_error = validate_post($_POST);
 
-// Функция записи и вывода объявлений ____________________________________________________
+                    /*_______________________________________
+                    |                                        |
+                    |                                        |
+                    |       Функция записи объявлений        |
+                    |                                        |
+                    |______________________________________ */
+
 
 function entry_ads ($post, $validate_post) {
 
@@ -76,14 +88,14 @@ function entry_ads ($post, $validate_post) {
 
         if ( empty($post['id'] ) && $post['id'] !== '0') {
 
-            // Записываем в сессию
             if (!isset($_SESSION['ads'])) {
                 $_SESSION['ads'] = array();
             }
 
+            /* {Записываем в сессию} */
             $_SESSION['ads'][] = $post;
 
-            /* ===== Редирект (-- F5 --) ===== */
+            /* {===== Редирект (-- F5 --) =====} */
             header( "Location: {$_SERVER['REQUEST_URI']}" );
             exit();
         }
@@ -93,7 +105,13 @@ function entry_ads ($post, $validate_post) {
 
 $display_ads = entry_ads($_POST ,$display_error);
 
-// Функция редактирования  ____________________________________________________
+                 /*_______________________________________
+                 |                                        |
+                 |                                        |
+                 |   Функция редактирования объявлений    |
+                 |                                        |
+                 |______________________________________ */
+
 
 function rewrite_ads ($post, $validate_post) {
 
@@ -103,7 +121,7 @@ function rewrite_ads ($post, $validate_post) {
             $id_post = (int)$post['id'];
             $_SESSION['ads'][$id_post] = $post;
 
-            /* ===== Редирект (-- F5 --) ===== */
+            /* {===== Редирект (-- F5 --) =====} */
             header( "Location: {$_SERVER['REQUEST_URI']}" );
             exit();
         }
@@ -112,8 +130,7 @@ function rewrite_ads ($post, $validate_post) {
 
 $edit_ads = rewrite_ads($_POST, $display_error);
 
-// Проверка полсе редактирования на заполненные обязательные поля
-
+/* {Проверка полсе редактирования на заполненные обязательные поля} */
 if ( (isset($_POST['id']) && (!empty($_POST['id']) || $_POST['id'] === '0') ) && !empty($display_error)) {
     $ads_edit   = $_POST;
     $checked    = isset($ads_edit['checkbox_email']) ? 'checked' : '';
@@ -124,7 +141,12 @@ if ( (isset($_POST['id']) && (!empty($_POST['id']) || $_POST['id'] === '0') ) &&
     $id         = isset($ads_edit['id'])             ? $ads_edit['id'] : '';
 }
 
-// Запрос на редактирование
+                    /*_______________________________________
+                    |                                        |
+                    |                                        |
+                    |         Запрос на редактирование       |
+                    |                                        |
+                    |______________________________________ */
 
 if ( isset($_GET['edit']) ) {
     $ads_edit   = $_SESSION['ads'][$_GET['edit']];
@@ -135,8 +157,7 @@ if ( isset($_GET['edit']) ) {
     $categoryId = isset($ads_edit['category_index']) ? (int)$ads_edit['category_index'] : '';
 }
 
-// запрос на удаление
-
+/* {Запрос на удаление} */
 if ( isset($_GET['deleted_ads']) ) {
     unset ( $_SESSION['ads'][$_GET['deleted_ads']] );
 }
