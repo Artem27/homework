@@ -1,12 +1,12 @@
 <?php
 $filename = 'file/ads.html';
 
-// Если не существует $_SESSION['ads'] - создаём $_SESSION['ads'] и записываем пустой массив
+/* {Если не существует $_SESSION['ads'] - создаём $_SESSION['ads'] и записываем пустой массив} */
 if ( !isset($_SESSION['ads']) ) {
     $_SESSION['ads'] = array();
 }
 
-// Немного редактируем данные
+/* {Немного редактируем данные} */
 if ( !empty($_POST) ) {
     $_POST['user_name']   = trim($_POST['user_name']);
     $_POST['ads_name']    = trim($_POST['ads_name']);
@@ -24,9 +24,9 @@ if ( !empty($_POST) ) {
 
 function validate_post($post) {
 
-    // Проверка на обязательные заполненные данные
-    // В случае провальной валидации вернёт сообщение в соответствующий input
-    // и "повесит" модификатор класса 'inputs__input_error' для наглядности
+    /* {Проверка на обязательные заполненные данные
+        В случае провальной валидации вернёт сообщение в соответствующий input
+        и "повесит" модификатор класса 'inputs__input_error' для наглядности} */
     if (!empty($post)) {
 
         if (empty($post['user_name'])) {
@@ -38,7 +38,7 @@ function validate_post($post) {
             $message['error']['error_user_email']        = 'Вы не ввели email';
             $message['error_input']['input_error_email'] = 'inputs__input_error';
 
-            // Проверака на валидность email
+            /* {Проверака на валидность email} */
         } elseif (filter_var($post['user_email'], FILTER_VALIDATE_EMAIL) === false) {
             $message['error']['error_user_email']        = 'Вы ввели некорректный email';
             $message['error_input']['input_error_email'] = 'inputs__input_error';
@@ -64,14 +64,14 @@ function validate_post($post) {
             $message['error']['error_price']             = 'Вы не указали цену';
             $message['error_input']['input_error_price'] = 'inputs__input_error';
 
-            // Проверака на правильность введённой цены
+            /* {Проверака на правильность введённой цены} */
         } elseif (!is_numeric($post['price'])) {
             $message['error']['error_price']             = 'Вы неправильно указали цену';
             $message['error_input']['input_error_price'] = 'inputs__input_error';
         }
 
         if ( isset($message) ) {
-            // Если есть ошибки, вернёт массив с ошибками в форму
+            /* {Если есть ошибки, вернёт массив с ошибками в форму} */
             return $message;
         }
 
@@ -103,26 +103,26 @@ function entry_ads ($post, $validate_post) {
 
             if ( empty($file_ads) ) {
 
-                // Проверяем, готов ли файл для записи
+                /* {Проверяем, готов ли файл для записи} */
                 if (is_writable($filename)) {
 
-                    // Шифруем данные сохраненные в сиссии
+                    /* {Шифруем данные сохраненные в сиссии} */
                     $_SESSION['ads'][] = $post;
                     $file_ads = serialize($_SESSION['ads']);
 
-                    // Открываем файл для записи и передаём метку $handle
+                    /* {Открываем файл для записи и передаём метку $handle} */
                     if ( !$handle = fopen($filename, 'w') ) {
                         echo 'ОШИБКА! Файл ads.html не был открыт для записи!';
                         exit();
                     }
 
-                    // Записываем в файл ads.html содержимое $file_ads
+                    /* {Записываем в файл ads.html содержимое $file_ads} */
                     if ( fwrite($handle, $file_ads) === FALSE) {
                         echo 'ОШИБКА! Объявление не было записанно в файл!';
                         exit();
 
                     } else {
-                        // Закрываем файловый поток $handle
+                        /* {Закрываем файловый поток $handle} */
                         fclose($handle);
                     }
 
@@ -133,32 +133,32 @@ function entry_ads ($post, $validate_post) {
 
             } else {
 
-                // Если файл уже содержит данные, выводим объявления
+                /* {Если файл уже содержит данные, выводим объявления} */
                 $file = file_get_contents($filename);
                 $_SESSION['ads'] = unserialize($file);
 
-                // Шифруем данные сохраненные в сиссии
+                /* {Шифруем данные сохраненные в сиссии} */
                 $_SESSION['ads'][] = $post;
                 $file_ads = serialize( $_SESSION['ads']);
 
-                // Открываем файл для записи и передаём метку $handle
+                /* {Открываем файл для записи и передаём метку $handle} */
                 if (!$handle = fopen($filename, 'w') ) {
                     echo 'ОШИБКА! Файл ads.html не был открыт для записи!';
                     exit();
                 }
 
-                // Записываем в файл ads.html содержимое $file_ads
+                /* {Записываем в файл ads.html содержимое $file_ads} */
                 if ( fwrite($handle, $file_ads) === FALSE ) {
                     echo 'ОШИБКА! Объявление не было записанно в файл!';
                     exit();
 
                 } else {
-                    // Закрываем файловый поток $handle
+                    /* {Закрываем файловый поток $handle} */
                     fclose($handle);
                 }
             }
 
-            /* ===== Редирект (-- F5 --) ===== */
+            /* {===== Редирект (-- F5 --) =====} */
             header( "Location: {$_SERVER['REQUEST_URI']}" );
             exit();
         }
@@ -191,22 +191,22 @@ function rewrite_ads ($post, $validate_post) {
                 $_SESSION['ads'][$id_post] = $post;
                 $file_ads = serialize($_SESSION['ads']);
 
-                // Проверяем, готов ли файл для записи
+                /* {Проверяем, готов ли файл для записи} */
                 if ( is_writable($filename) ) {
 
-                    // Ставим метку $handle в файл ads.html
+                    /* {Ставим метку $handle в файл ads.html} */
                     if ( !$handle = fopen($filename, 'w') ) {
                         echo 'ОШИБКА! Файл ads.html не был открыт для записи!';
                         exit();
                     }
 
-                    // Записываем содержимое $file_ads в файл ads.html
+                    /* {Записываем содержимое $file_ads в файл ads.html} */
                     if ( fwrite($handle, $file_ads) === FALSE) {
                         echo 'ОШИБКА! Объявление не было записанно в файл!';
                         exit();
 
                     } else {
-                        // Закрываем файловый поток $handle
+                        /* {Закрываем файловый поток $handle} */
                         fclose($handle);
                     }
 
@@ -220,7 +220,7 @@ function rewrite_ads ($post, $validate_post) {
                 exit();
             }
 
-            /* ===== Редирект (-- F5 --) ===== */
+            /* {===== Редирект (-- F5 --) =====} */
             header( "Location: {$_SERVER['REQUEST_URI']}" );
             exit();
         }
@@ -229,7 +229,7 @@ function rewrite_ads ($post, $validate_post) {
 
 $edit_ads = rewrite_ads($_POST, $display_error);
 
-// Проверка полсе редактирования на заполненные обязательные поля
+/* {Проверка полсе редактирования на заполненные обязательные поля} */
 
 if ( (isset($_POST['id']) && (!empty($_POST['id']) || $_POST['id'] === '0') ) && !empty($display_error)) {
     $ads_edit   = $_POST;
@@ -240,7 +240,7 @@ if ( (isset($_POST['id']) && (!empty($_POST['id']) || $_POST['id'] === '0') ) &&
     $categoryId = isset($ads_edit['category_index']) ? (int)$ads_edit['category_index'] : '';
     $id         = isset($ads_edit['id'])             ? $ads_edit['id'] : '';
 
-    // очищаем поля для вывода сообщения об ошибке
+    /* {очищаем поля для вывода сообщения об ошибке} */
     if ( isset($display_error['error']['error_price']) ) {
         $ads_edit['price'] = '';
     }
@@ -280,7 +280,7 @@ if ( isset($_GET['edit']) ) {
 
     } else {
         echo 'Ошибка! Данного пути до файла не существует!';
-        exit(); // рассмотреть функцию die
+        exit();
     }
 }
 
@@ -321,16 +321,16 @@ if ( isset($_GET['deleted_ads']) ) {
     }
 }
 
-// Если существует данный путь до файла и далее сам файл
+/* {Если существует данный путь до файла и далее сам файл} */
 if ( isset($filename) ) {
 
-    // Если файл существует, считываем его содержимое
+    /* {Если файл существует, считываем его содержимое} */
     if ( file_exists($filename) ) {
         $file = file_get_contents($filename);
 
         if ( !empty($file) ) {
 
-            // Если в файле есть данные, то выводим их на страницу
+            /* {Если в файле есть данные, то выводим их на страницу} */
             $_SESSION['ads'] = unserialize($file);
 
         } else {
@@ -339,13 +339,13 @@ if ( isset($filename) ) {
 
     } else {
 
-        // Если файла не существует, то создаём его для дальшейших записей
+        /* {Если файла не существует, то создаём его для дальшейших записей} */
         if ( !$handle = fopen($filename, 'w+') ) {
             $file_message = 'Ошибка создания файла!';
             exit();
 
         } else {
-            // Закрываем файловый поток $handle
+            /* {Закрываем файловый поток $handle} */
             fclose($handle);
         }
     }
