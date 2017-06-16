@@ -1,0 +1,37 @@
+// ==   vars    == \\
+
+$white:      #f8f8f8;
+$gray:       #a3a3a3;
+$blue:       #00d7ff;
+$orange:     #ff6e00;
+$purple:     #d333ff;
+$pink:       #ff59af;
+$green:      #68c649;
+$black:      #111111;
+$lightBlack: #5e5e5e;
+
+$containerWidth: 1000px;
+$footerHeight:   100px;
+
+
+
+// ==   layout    == \\
+
+@import "plugins/font-awesome";
+@import "_misc/fonts";
+@import "_misc/mixins";
+@import "_misc/normalize";
+@import "_misc/adjustment";
+
+
+// ==   sections    == \\
+
+@import "sections/header";
+@import "sections/sidebar";
+@import "sections/content";
+@import "sections/formads";
+@import "sections/displayads";
+@import "sections/study";
+
+
+

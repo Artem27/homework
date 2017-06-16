@@ -1,0 +1,88 @@
+/* -- ===== Базовые настройки шаблона ===== -- */
+
+body, html {
+  @include dimensions (100%, 100%);
+}
+
+body {
+  font-size:              16px;
+  line-height:            1.5;
+  -webkit-font-smoothing: antialiased;
+  background:             $white;
+
+  @include fira_sans();
+}
+
+.wrapper {
+  min-height: 100%;
+  min-width:  $containerWidth + 20px;
+  position:   relative;
+}
+.wrapper:after {
+    content:  "";
+    display:  block;
+    height:   $footerHeight;
+    overflow: hidden;
+}
+
+.maincontent {
+  padding-bottom: 100px;
+}
+
+.container {
+  margin: 0 auto;
+  width:  $containerWidth;
+}
+
+/* -- ===== Сброс параметров ===== -- */
+
+li {
+  list-style: none;
+}
+
+ul {
+  margin:  0;
+  padding: 0;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button {
+  padding: 0;
+  margin:  0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin-top:  0;
+  font-weight: normal;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+menu {
+  margin:  0;
+  padding: 0;
+}
+
+/* -- ===== Footer ===== -- */
+
+.footer {
+  height:     $footerHeight;
+  min-width:  $containerWidth + 20px;
+  margin-top: -$footerHeight;
+  width:      100%;
+  background: $lightBlack;
+  position:   relative;
+}
+
+
+
+

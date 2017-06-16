@@ -1,0 +1,123 @@
+.content {
+  .container {
+    @extend %clear_fix;
+  }
+}
+
+.sidebar {
+  width:        30%;
+  float:        left;
+  border:       3px solid $blue;
+  border-right: 3px solid transparent;
+  border-left:  3px solid transparent;
+  margin-right: 20px;
+  background:   lighten($blue,35%);
+
+  @include border-radius(40px 0px 0px 40px);
+  @include fira_sans();
+  @include transition-duration(1s);
+
+  &:hover {
+    border-right: 3px solid transparent;
+    border-left:  3px solid $blue;
+    background:   lighten($blue,90%);
+
+    @include transition-duration(1s);
+    @include box-shadow(1px 3px 10px $gray);
+  }
+}
+
+.nav {
+  padding: 20px 20px 10px 20px;
+}
+
+//@keyframes pulse {
+//  25% {
+//    @include transform( scale(1.1) );
+//  }
+//
+//  75% {
+//    @include transform( scale(0.9) );
+//  }
+//}
+
+.nav__item {
+  margin-bottom: 10px;
+  border:        3px solid $blue;
+
+  @include transition-duration(.4s);
+  @include border-radius(5px 5px 5px 5px);
+
+  &:hover {
+    background: lighten($blue, 20%);
+
+    //@include AnimationFull(pulse, 1s, linear, 1);
+    @include transform( scale(1.05) );
+    @include transition-duration(.4s);
+    @include box-shadow(0 3px 10px $gray);
+
+    &:nth-child(even) {
+      background:   lighten($orange, 20%);
+    }
+  }
+
+  &:first-child {
+    @include border-radius(20px 20px 5px 5px);
+  }
+
+  &:last-child {
+    @include border-radius(5px 5px 20px 20px);
+  }
+
+}
+
+@keyframes pulse__link {
+  25% {
+    @include transform(scale(1.01));
+  }
+
+  75% {
+    @include transform(scale(.95));
+  }
+}
+
+@keyframes awesome {
+  25% {
+    @include transform( translateX(-3px) );
+  }
+
+  75% {
+    @include transform( translateX(2px) );
+  }
+}
+
+.nav__link {
+  display:    block;
+  padding:    10px;
+  font-size:  112.5%;
+  text-align: center;
+  color:      $black;
+
+  @include transition-duration(.4s);
+
+  &:hover {
+    @include transition-duration(.4s);
+    @include AnimationFull(pulse__link, 1s, linear, infinite);
+
+    .fa {
+      @include AnimationFull(awesome, 1s, linear, infinite);
+    }
+  }
+}
+
+.nav__item_active {
+  border: 3px solid $purple;
+
+  .nav__link{
+    color: $gray;
+  }
+
+  .fa {
+    color: $purple;
+  }
+}

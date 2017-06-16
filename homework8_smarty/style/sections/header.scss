@@ -1,0 +1,300 @@
+/* =  HEADER  = */
+
+.header {
+  font-size:     125%;
+  height:        6.25em;
+  background:    #f0ede4;
+  position:      relative;
+  margin-bottom: 30px;
+
+  @include fira_sans(bold);
+  @include box-shadow(0 1px 5px $gray);
+  @extend  %clear_fix;
+}
+
+.container {
+  @extend  %clear_fix;
+}
+
+.header__left, .header__right {
+  float: left;
+  width: 50%;
+}
+
+/* =  ..........       Avatar     ..........  = */
+
+.user {
+  margin-top: 0.75em;
+
+  @include inline_block();
+}
+
+.user__avatar {
+  overflow:     hidden;
+  border:       3px solid $purple;
+  margin-right: 10px;
+
+  @include border-radius(50%);
+  @include inline_block(middle);
+  @include dimensions (4.375em, 4.375em);
+}
+
+.user__avatar-img {
+  display: block;
+  @include dimensions (100%, 100%);
+}
+
+.user__name {
+  @include inline_block(middle);
+
+  .user__name-text {
+    color: $lightBlack;
+  }
+}
+
+.user__email {
+  position: relative;
+}
+
+.email-link {
+  font-size: 87.5%;
+  color:     $blue;
+  @include fira_sans();
+
+  &:hover + .email-message  {
+    opacity:          1;
+    background-color: #F0EDE4;
+
+    @include transition-duration(0.4s);
+    @include transform( translate(-12px, 4px) );
+  }
+}
+
+.email-link__hover {
+  @include transition-duration(.4s);
+  &:hover {
+    color:        $pink;
+    text-shadow:  0 45px 0 $blue;
+    font-size:    75%;
+
+    @include transition-duration(.4s);
+  }
+}
+
+.email-message {
+  position:     absolute;
+  top:          2em;
+  opacity:      0;
+  min-width:    7.5em;
+  border:       1px solid $pink;
+  z-index:      1000;
+  color:        $blue;
+
+  @include fira_sans();
+  @include transition-duration(0.3s);
+  @include transitionDelay(.1s);
+  @include border-radius(5px);
+
+  &:before {
+    content:  '';
+    display:  block;
+    position: absolute;
+    left:     0;
+    right:    0;
+    height:   25px;
+    top:      -10px;
+  }
+}
+
+.trangle {
+  width:               0;
+  height:              0;
+  border:              10px solid transparent;
+  border-bottom-color: $pink;
+  border-top:          0;
+  position:            absolute;
+  bottom:              100%;
+  left:                50%;
+  margin-left:        -12px;
+
+  &:after {
+    content:             '';
+    display:             block;
+    border:              10px solid transparent;
+    border-bottom-color: #F0EDE4;
+    border-top:          0;
+    position:            absolute;
+    top:                 1px;
+    left:                -10px;
+  }
+}
+
+.message-text {
+  font-size:  12px;
+  text-align: center;
+  padding:    15px;
+}
+
+.smile{
+  border:      3px solid $purple;
+  overflow:    hidden;
+  margin-left: 1em;
+
+  @include dimensions (2.5em, 2.5em);
+  @include border-radius(50%);
+}
+
+.smile-pic{
+  display: block;
+
+  @include dimensions (100%, 100%);
+}
+
+/* =  ..........       HEADER-RIGHT     ..........  = */
+
+// message ---------------------------------------
+
+.message {
+  text-align: center;
+  color:      $blue;
+  float:      left;
+  width:      70%;
+  position:   absolute;
+  top:        3.35em;
+  left:       0;
+
+  @extend %clear_fix;
+}
+
+
+// Social ---------------------------------------
+
+.header__right {
+  text-align: right;
+  position: relative;
+
+  @extend %clear_fix;
+}
+
+.social {
+  padding-top: 0.75em;
+  width:       150px;
+
+  @include inline_block();
+}
+
+.social__list {
+  text-align: right;
+}
+
+.social__item {
+  padding-bottom: 0.4em;
+
+  @include inline_block(middle);
+}
+
+.social__link {
+  width:   32px;
+  height:  32px;
+  display: block;
+
+  @include transition-duration(.4s);
+
+  &:hover {
+    @include transition-duration(.4s);
+    @include transform( translateY(7px) );
+  }
+}
+
+.social-img {
+  width:  100%;
+  height: 100%;
+}
+//@each $social in (ap, vk, fb, tw, gl, h, it, sp) {
+//  .social__link_#{$social} {
+//    background: url('../style/img/icon/social_new/#{$social}.png') 0 0 no-repeat;
+//  }
+//}
+
+// Всплывашка ---------------------------------------
+
+.nav__item-contacts {
+
+  position: relative;
+  color:    $blue;
+
+  @include inline_block(middle);
+
+  &:hover {
+     .dropdown{
+        left:    -54px;
+        opacity: 1;
+     }
+  }
+}
+
+.dropdown {
+  width: 200px;
+  text-align: center;
+  background: #fff;
+  height: 100%;
+  border: 1px solid $purple;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  z-index: 1000;
+  left: -9999px;
+  margin-top: 10px;
+  opacity: 0;
+
+  @include border-radius(5px);
+  @include transition(opacity .6s );
+  @include fira_sans();
+
+  &:before {
+    content:  '';
+    display:  block;
+    position: absolute;
+    left:     0;
+    right:    0;
+    height:   25px;
+    top:      -23px;
+  }
+
+  &:hover {
+    .dropdown__item {
+      color:    $gray;
+
+      @include transition-duration(.6s);
+    }
+
+    .fa-phone-square {
+      color:    $gray;
+
+      @include transition-duration(.6s);
+    }
+  }
+}
+
+.trangle-dropdown {
+  border:              15px solid transparent;
+  border-bottom-color: $purple;
+  border-top:          0;
+  position:            absolute;
+  bottom:              100%;
+  left:                50%;
+  margin-left:         -15px;
+
+  @include dimensions(0, 0);
+
+  &:after {
+    content:             '';
+    display:             block;
+    border:              15px solid transparent;
+    border-bottom-color: #fff;
+    border-top:          0;
+    position:            absolute;
+    top: 1px;
+    left: -15px;
+  }
+}

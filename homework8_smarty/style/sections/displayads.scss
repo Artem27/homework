@@ -1,0 +1,96 @@
+.ads__display {
+  background: $white;
+  position:   relative;
+
+  &:hover {
+    border-left: 3px solid $blue;
+
+    .title__text {
+      text-decoration: underline;
+
+      @include transition-duration(.2s);
+    }
+  }
+  @include border-radius(0);
+}
+
+.title {
+  padding-top: 20px;
+}
+
+.bulleti {
+  font-size: 125%;
+  padding:   10px;
+
+  @extend %clear_fix;
+}
+
+.bulleti__left {
+  float:          left;
+  width:          50%;
+  margin:         0 10px 15px 0;
+  border-right:   3px solid transparent;
+
+  @include transition-duration(.3s);
+
+  &:hover {
+    border-right: 3px solid $blue;
+
+    @include transition-duration(.3s);
+  }
+
+}
+
+.bulleti__right {
+  margin: 0 10px 15px 0;
+  float:  left;
+  width:  45%;
+}
+
+.panel {
+  float:   right;
+  width:   100%;
+  padding: 10px;
+}
+
+.panel__list {
+  margin-right: -10px;
+}
+
+.panel__item {
+  font-size:    112.5%;
+  position:     relative;
+  margin-right: 10px;
+
+  @include inline_block(middle);
+}
+
+.panel__link {
+  &:hover {
+    color: $pink;
+  }
+  &:hover + .panel__link-img {
+    opacity: 1;
+
+    @include transform(translateY(-15px));
+    @include transition-duration(.5s);
+  }
+}
+
+.panel__link-img {
+  width:    120px;
+  height:   120px;
+  display:  block;
+  position: absolute;
+  overflow: hidden;
+  bottom:   100%;
+  right:    -25px;
+  opacity:  0;
+
+  @include border-radius(30%);
+}
+
+.panel__link-pic {
+  width:    100%;
+  height:   100%;
+}
