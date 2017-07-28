@@ -196,10 +196,8 @@
                     </div>
 
                 <?php endforeach;?>
+            <?php endif;?>
 
-            <?php endif;
-            header('Location:'.$_SERVER['REQUEST_URI']);
-            exit;?>
         </div>
     </div>
 </div>
