@@ -1,0 +1,125 @@
+//    MIXINS
+
+@mixin box-shadow($value){
+  box-shadow: $value;
+  -webkit-box-shadow: $value;
+  -moz-box-shadow: $value;
+}
+
+@mixin border-radius($value){
+  border-radius: $value;
+  -webkit-border-radius: $value;
+  -moz-border-radius: $value;
+}
+//   Анимация
+
+@mixin transition($value) {
+  transition:         $value;
+  -webkit-transition: $value;
+  -o-transition:      $value;
+  -moz-transition:    $value;
+}
+
+@mixin transition-duration($value){
+  transition-duration:         $value;
+  -webkit-transition-duration: $value;
+  -o-transition-duration:      $value;
+  -moz-transition-duration:    $value;
+}
+
+@mixin transitionDelay($value) {
+  -webkit-transition-delay: $value;
+  -moz-transition-delay:    $value;
+  -o-transition-delay:      $value;
+  transition-delay:         $value;
+}
+
+@mixin inline_block($vertical_align: top){
+  display: inline-block;
+  vertical-align: $vertical_align;
+}
+
+@mixin dimensions ($width, $height) {
+  width:  $width;
+  height: $height;
+}
+
+%clear_fix{
+  &:after{
+    content: "";
+    display: block;
+    clear:   both;
+  }
+}
+
+@mixin transform ($value) {
+  transform:         $value;
+  -ms-transform:     $value;
+  -webkit-transform: $value;
+  -o-transform:      $value;
+  -moz-transform:    $value;
+}
+
+/* -- ===== Анимация ===== -- */
+
+@mixin Animation ($value) {
+  animation:         $value;
+  -webkit-animation: $value;
+  -o-animation:      $value;
+  -moz-animation:    $value;
+}
+
+@mixin AnimationFull ($name, $duration, $timing, $iteration) {
+  animation-name:         $name;
+  -webkit-animation-name: $name;
+  -o-animation-name:      $name;
+  moz-animation-name:     $name;
+
+  animation-duration:         $duration;
+  -webkit-animation-duration: $duration;
+  -o-animation-duration:      $duration;
+  -moz-animation-duration:    $duration;
+
+  animation-timing-function:         $timing;
+  -webkit-animation-timing-function: $timing;
+  -o-animation-timing-function:      $timing;
+  -moz-animation-timing-function:    $timing;
+
+  animation-iteration-count:          $iteration;
+  -webkit-animation-iteration-count:  $iteration;
+  -o-animation-iteration-count:       $iteration;
+  -moz-animation-iteration-count:     $iteration;
+}
+
+@mixin linearGradient($value...) {
+  background: -o-linear-gradient($value);
+  background: -moz-linear-gradient($value);
+  background: -webkit-linear-gradient($value);
+  background: linear-gradient($value);
+}
+
+//@mixin keyframes($first-name, $last-name, $argument) {
+//  @-webkit-keyframes #{$first-name} {
+//  -webkit-#{$last-name}: #{$argument};
+//  }
+//  @-moz-keyframes #{$first-name} {
+//  -moz-#{$last-name}: #{$argument};
+//  }
+//  @-o-keyframes #{$first-name} {
+//  -o-#{$last-name}: #{$argument};
+//  }
+//  @keyframes #{$first-name} {
+//  #{$last-name}: #{$argument};
+//  }
+//}
+
+@mixin images_border50($width, $height, $border, $overflow, $radius) {
+  width:    $width;
+  height:   $height;
+  border:   $border;
+  overflow: $overflow;
+
+  border-radius:         $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius:    $radius;
+}
