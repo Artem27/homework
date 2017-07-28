@@ -1,0 +1,29 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
+// vars
+$container_width: 1000px;
+$footer_height:    100px;
+
+
+// Colors
+$hover_color: #b6b6b6;
+$text_color:  #979f8c;
+
+
+// Layout
+@import "_misc/normalize";
+@import "_misc/mixins";
+@import "_misc/adjustment";
+
+
+
+
+// Sections
+@import "sections/header";
+@import "sections/general";
+@import "sections/form";
+@import "sections/ads";
+
+
+

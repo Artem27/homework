@@ -143,7 +143,7 @@
 
                     {* <!-- ===== Цена ===== --> *}
 
-                    <div class="inputs__block {if isset($display_error.error_input.input_error_price)}{$displayError.error_input.input_error_price}{else}{''}{/if}">
+                    <div class="inputs__block {if isset($display_error.error_input.input_error_price)}{$display_error.error_input.input_error_price}{else}{''}{/if}">
                         <div class="inputs__title">
                             <label for="price" > Укажите цену </label> <span style="color:red; position: absolute">*</span>
                         </div>
